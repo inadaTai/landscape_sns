@@ -1,0 +1,81 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+/*共通のミックスイン*/
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+/*最初のLPなどの表記箇所(共通CSS)*/
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+h1,h2,h3{
+  line-height: 1;
+}
+h1{
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+p{
+  font-size: 1.1em;
+  line-height: 1.7em;
+  }
+
+/*ヘッダー*/
+#logo {
+  float: left;
+  margin-right: 10px;
+  padding-top: 9px;
+    border-top: 1px solid #eaeaea;
+}
+
+/*フッター*/
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+/*後日このsmallタグ内にフッターにてpostと投稿ボタンを実装するので先に記載します。*/
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+/*byebugのボックス箇所に関するCSSを実装*/
+/*開発環境のみで使用する*/
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
