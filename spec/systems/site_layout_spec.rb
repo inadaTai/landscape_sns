@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "SiteLayouts", type: :system do
+RSpec.describe "サイトのレイアウトに関するテスト", type: :system do
 
   describe "各パスのタイトル確認" do
     it "ルートパスのタイトル確認" do

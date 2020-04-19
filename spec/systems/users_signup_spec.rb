@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UsersSignups", type: :system do
+RSpec.describe "ユーザのログインに関するテスト", type: :system do
 
   it "無効な新規登録をした場合" do
     visit signup_path

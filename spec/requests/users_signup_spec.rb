@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users新規登録に関するテスト", type: :request do
+RSpec.describe "ユーザー新規登録に関するテスト", type: :request do
 
   describe "GET /signup" do
     it "新規登録画面へアクセスできるかテスト" do
