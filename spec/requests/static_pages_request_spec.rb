@@ -30,4 +30,11 @@ RSpec.describe "Staticpages", type: :request do
     end
   end
 
+  describe "GET /policy" do
+    it "利用規約へアクセス可能テスト" do
+      get "/policy"
+      expect(response).to have_http_status(:success)
+    end
+  end
+
 end

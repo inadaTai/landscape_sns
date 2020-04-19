@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザ
+      micropost: 投稿
+    attributes:
+      user:
+        email: メールアドレス
+        realname: 名前
+        name: ユーザーネーム
+        admin: 管理者
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        password_digest: パスワード
+        current_password: 現在のパスワード
+        image_data: サムネイル画像
+      micropost:
+        content: 本文
+        picture: 画像
+      comment:
+        body: コメント
+    errors:
+      messages:
+        wrong: が正しくありません

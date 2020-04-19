@@ -1,3 +1,30 @@
-
+<% provide(:title, '新規登録') %>
 <h1>新規登録フォーム</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user, url: signup_path) do |f| %>
+    <%= render 'share/error_messages' %>
+
+    <%= f.label :realname,"名前(サイト内で公開されるお名前です) (例：山田太郎)"%>
+    <%= f.text_field :realname, class:'form-control'%>
+
+    <%= f.label :name,"ユーザーネーム(サイト内で公開されるお名前です) (例:yamada_517)"%>
+    <%= f.text_field :name, class:'form-control'%>
+
+    <%= f.label :email,"メールアドレス"%>
+    <%= f.email_field :email,class:'form-control'%>
+
+    <%= f.label :password,"パスワード"%>
+    <%= f.password_field :password,class:'form-control'%>
+
+    <%= f.label :password_confirmation,"もう１度パスワード入力してください"%>
+    <%= f.password_field :password_confirmation,class:'form-control'%>
+
+    <%= f.submit "アカウント登録", class: "btn btn-primary" %>
+
+    <% end %>
+
+    <br><%= link_to "利用規約" , policy_path  %><br>
+  </div>
+</div>

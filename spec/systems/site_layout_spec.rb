@@ -22,5 +22,10 @@ RSpec.describe "SiteLayouts", type: :system do
       visit help_path
       expect(page).to have_title 'ヘルプ | Landscape_sns'
     end
+
+    it "利用規約のタイトル確認" do
+      visit policy_path
+      expect(page).to have_title '利用規約 | Landscape_sns'
+    end
   end
 end

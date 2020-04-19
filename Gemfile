@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
+gem 'rails-i18n','6.0.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Storage variant
