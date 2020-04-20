@@ -8,12 +8,15 @@ ja:
         email: メールアドレス
         realname: 名前
         name: ユーザーネーム
+        sex: 性別
+        sex_0: 男性
+        sex_1: 女性
+        sex_2: その他
         admin: 管理者
         password: パスワード
         password_confirmation: パスワード（確認用）
         password_digest: パスワード
         current_password: 現在のパスワード
-        image_data: サムネイル画像
       micropost:
         content: 本文
         picture: 画像

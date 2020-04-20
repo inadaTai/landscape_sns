@@ -1,0 +1,53 @@
+<% provide(:title, 'プロフィール編集ページ') %>
+
+<h1>新規登録フォーム</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="password_edits">
+    <%= link_to "パスワード変更フォームはこちら！", "/password_edits/edit" %>
+    </div>
+
+    <%= form_for (@user) do |f| %>
+    <%= render 'share/error_messages' %>
+
+    <%= f.label :realname,"名前(サイト内で公開されるお名前です) (例：山田太郎)"%>
+    <%= f.text_field :realname, class:'form-control'%>
+
+    <%= f.label :name,"ユーザーネーム(サイト内で公開されるお名前です) (例:yamada_517)"%>
+    <%= f.text_field :name, class:'form-control'%>
+
+    <%= f.label :email,"メールアドレス"%>
+    <%= f.email_field :email,class:'form-control'%>
+
+    <%= f.label :sex,"性別(任意)" %><br>
+
+    <%= f.label :sex_0 %>
+    <%= f.radio_button :sex, 0 %>
+    <%= f.label :sex_1 %>
+    <%= f.radio_button :sex, 1 %>
+    <%= f.label :sex_2 %>
+    <%= f.radio_button :sex, 2 %><br>
+
+    <%= f.label :web,"webサイト(任意)" %>
+    <%= f.text_field :web, class: 'form-control' %>
+
+    <%= f.label :tel,"電話番号(ハイフン無し)(任意)" %>
+    <%= f.text_field :tel, class: 'form-control' %>
+
+    <%= f.label :introduction,"自己紹介プロフィール欄(１５０文字以内)(任意)" %>
+    <%= f.text_area :introduction, class: 'form-control' %>
+
+    <%= f.submit "変更を反映する", class: "btn btn-primary" %>
+
+    <% end %>
+    <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails" target="_blank">アイコンを変更</a>
+    </div><br>
+    <br><button type="button" class="btn btn-warning btn-delete">
+      <%= link_to "Landscapeを退会", @user,method: :delete,
+      data:{ confirm: "退会の手続きをされますと全てのサービスが利用不可となります、再度ご利用いただくにはID登録が必要となります。
+本当に退会してよろしいですか?"} %></button>
+  </div>
+</div>

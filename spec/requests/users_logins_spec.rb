@@ -4,6 +4,15 @@ RSpec.describe "Usersログインに関するテスト", type: :request do
   include SessionsHelper
 
   let(:user) { create(:user) }
+
+  def post_invalid_infomation
+    post login_path, params: {
+      session: {
+        email: "",
+        password: ""
+      }
+    }
+  end
   #記憶トークンの引数つき有効なログイン情報のメソッド（ログインするためにpostを送る）
   def post_valid_information(remember_me = 0)
     post login_path,params:{
@@ -53,39 +62,26 @@ RSpec.describe "Usersログインに関するテスト", type: :request do
   describe "GET /login" do
     it "無効なログイン情報送信テスト" do
       get login_path
-      post login_path, params: {
-        session: {
-          email: "",
-          password: ""
-        }
-      }
+      post_invalid_infomation
       expect(flash[:danger]).to be_truthy
       expect(is_logged_in?).to be_falsey
     end
-
+    
     it "有効なログイン情報送信テスト" do
       get login_path
-      post login_path, params: {
-        session: {
-          email: user.email,
-          password: user.password
-        }
-      }
-      expect(flash[:danger]).to be_falsey
+      post_valid_information(0)
       expect(is_logged_in?).to be_truthy
+      expect(cookies[:remember_token]).to be_nil
     end
 
     it "有効なログイン後ログアウトする" do
       get login_path
-      post login_path, params: {
-        session: {
-        email: user.email,
-        password: user.password
-        }
-      }
+      post_valid_information(1)
       expect(is_logged_in?).to be_truthy
+      expect(cookies[:remember_token]).not_to be_empty
       delete logout_path
       expect(is_logged_in?).to be_falsey
-  end
+      expect(cookies[:remember_token]).to be_empty
+    end
   end
 end

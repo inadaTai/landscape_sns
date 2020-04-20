@@ -152,3 +152,20 @@ input {
     color: $state-danger-text;
   }
 }
+
+/*ユーザ一覧ページのcss*/
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+/*パスワードエディットページのリンクに関するcss*/
+div.password_edits{
+  padding: 15px 0;
+  text-align: center;
+  font-weight: bold;
+}
