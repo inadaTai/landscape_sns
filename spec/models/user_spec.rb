@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
 
-    it "30文字は可テスト" do
+    it "31文字未満は可テスト" do
       user.name = "a"*30
       expect(user).to be_valid
     end
@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
 
-    it "30文字は可テスト" do
+    it "31文字未満は可テスト" do
       user.realname = "a"*30
       expect(user).to be_valid
     end
@@ -108,9 +108,15 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
 
-    it "６文字以上は可テスト" do
+    it "6文字以上は可テスト" do
       user.password = user.password_confirmation = "a" * 6
       expect(user).to be_valid
+    end
+  end
+
+  describe "authenticated?" do
+    it "authenticated?メソッドへnilを代入した場合falseが返る" do
+      expect(user.authenticated?('')).to be_falsey
     end
   end
 end

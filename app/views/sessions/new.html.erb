@@ -6,13 +6,19 @@
     <%= form_for(:session, url: login_path) do |f| %>
 
     <%= f.label :email,"メールアドレス"%>
-    <%= f.email_field :email,class:'form-control'%>
+    <%= f.email_field :email, class:'form-control'%>
 
     <%= f.label :password,"パスワード"%>
-    <%= f.password_field :password,class:'form-control'%>
+    <%= f.password_field :password, class:'form-control'%>
+    <%= f.label :remember_me, class: "checkbox inline" do %>
+    <%= f.check_box :remember_me %>
+    <span>次回からログイン省略</span>
+    <% end %>
 
     <%= f.submit "Landscapeへログイン", class: "btn btn-primary" %>
 
     <% end %>
+
+    <br><p><%= link_to "登録がまだの方はこちら！", signup_path %></p><br>
   </div>
 </div>
