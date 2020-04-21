@@ -1,0 +1,20 @@
+<%= form_for(@micropost) do |f| %>
+  <%= render'share/error_messages', object:f.object %>
+  <div class="field">
+    <%= f.label :content, "投稿フォーム" %>
+    <%= f.text_area :content, placeholder: "みんなに背景を共有しよう！" %>
+  </div>
+  <%= f.submit "投稿する",class: "btn btn-primary" %>
+  <span class="picture">
+    <%= f.file_field :picture,accept: 'jpeg,image/png' %>
+  </span>
+<% end %>
+
+<script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 2) {
+      alert('投稿できるファイルサイズは2MBまでです');
+    }
+  });
+</script>

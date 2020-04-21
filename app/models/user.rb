@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :password,presence: true,length: { minimum: 6 },allow_nil: true
   attr_accessor :remember_token
   attr_accessor :current_password
+  has_many :microposts, dependent: :destroy
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -32,5 +33,9 @@ class User < ApplicationRecord
 
   def forget
     update_attribute(:remember_digest,nil)
+  end
+
+  def feed
+    Micropost.where("user_id = ?" , id)
   end
 end

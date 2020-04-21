@@ -1,9 +1,49 @@
 <footer class="footer">
+<% if logged_in? %>
+<% if @microposts.nil? %>
+<small>
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-2">
+        <button type="button" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal"style="width:500px">
+          背景を投稿する
+        </button>
+      </div>
+    </div>
+  </div>
+</small>
+<!-- ボタン・リンククリック後に表示される画面の内容 -->
+<div class="modal" id="testModal"  role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modal-post">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">あなたが撮影した背景を共有しよう！</h4>
+      </div>
+      <div id="micropost">
+        <%= form_for(@micropost) do |f| %>
+          <%= render'share/error_messages', object: f.object %>
+           <div class="field">
+           <%= f.text_area :content, placeholder: "あなたの見た景色を共有してみよう！" %>
+           </div>
+          <%= f.submit "投稿", class: "btn btn-primary" %>
+          <span class = "picture">
+            <%= f.file_field :picture, accept: 'image/jpeg,image/png' %>
+          </span>
+          <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<% end %>
   <nav>
     <ul>
       <li><%= link_to "About",about_path %></li>
       <li><%= link_to "お問い合わせ",contact_path %></li>
-      <li><%= link_to "利用規約","#" %></li>      
+      <li><%= link_to "利用規約",policy_path %></li>
     </ul>
   </nav>
 </footer>

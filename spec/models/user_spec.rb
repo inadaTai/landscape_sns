@@ -119,4 +119,11 @@ RSpec.describe User, type: :model do
       expect(user.authenticated?('')).to be_falsey
     end
   end
+
+  describe "micropost関連テスト" do
+    it "ユーザーが退会したら投稿した投稿物も削除されるテスト" do
+      user.microposts.create!(content: "写真投稿テスト",picture: File.open("#{Rails.root}/db/images_seeds/1.jpeg"))
+      expect{ user.destroy }.to change{ Micropost.count }.by(-1)
+    end
+  end
 end

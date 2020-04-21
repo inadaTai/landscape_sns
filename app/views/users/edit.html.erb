@@ -9,7 +9,7 @@
     </div>
 
     <%= form_for (@user) do |f| %>
-    <%= render 'share/error_messages' %>
+    <%= render 'share/error_messages', object: f.object %>
 
     <%= f.label :realname,"名前(サイト内で公開されるお名前です) (例：山田太郎)"%>
     <%= f.text_field :realname, class:'form-control'%>

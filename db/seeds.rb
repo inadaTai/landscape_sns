@@ -16,3 +16,11 @@ User.create!(realname: "example",
                password:              password,
                password_confirmation: password)
 end
+#サンプルデータにマイクロポストを追加
+image_num_array=[*1..10].shuffle!
+users = User.order(:created_at).take(6)
+6.times do
+  image_num=image_num_array.shift
+  content = Faker::Lorem.sentence(5)
+  users.each { |user| user.microposts.create!(content: content,picture: File.open("#{Rails.root}/db/images_seeds/#{image_num}.jpeg")) }
+end
