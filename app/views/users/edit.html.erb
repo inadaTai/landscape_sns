@@ -9,7 +9,6 @@
       <%= link_to "パスワード変更フォームはこちら！", "/password_edits/edit" %>
       </div>
 
-
     <%= form_for (@user) do |f| %>
     <%= render 'share/error_messages', object: f.object %>
 
@@ -47,9 +46,6 @@
       <%= gravatar_for @user %>
       <a href="http://gravatar.com/emails" target="_blank">アイコンを変更</a>
     </div><br>
-    <br><button type="button" class="btn btn-warning btn-delete">
-      <%= link_to "Landscapeを退会", @user,method: :delete,
-      data:{ confirm: "退会の手続きをされますと全てのサービスが利用不可となります、再度ご利用いただくにはID登録が必要となります。
-本当に退会してよろしいですか?"} %></button>
+
   </div>
 </div>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only:[:edit,:update,:following,:followers,:update,:destroy]
+  before_action :logged_in_user, only:[:index,:edit,:update,:following,:followers,:destroy]
   before_action :correct_user,   only: [:edit, :update]
   #before_action :admin_user, only:[:destroy]
   #users/editより退会ボタンを使用するので今の仕様では使用しない。
