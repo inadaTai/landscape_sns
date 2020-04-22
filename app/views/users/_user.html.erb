@@ -2,9 +2,11 @@
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.name, user %><br>
   <%= user.introduction %>
-  <% if current_user.uid.nil? && current_user.admin? && !current_user?(user) %>
+  <% unless user.uid.nil? %>
+  <% if current_user.admin? && !current_user?(user) %>
   | <%= link_to "削除", user, method: :delete,
   data: { confirm: "規約違反または不正行為になどが確認されたアカウントなどに行われるアクションです。
   本当に削除しますか？" } %>
+  <% end %>
   <% end %>
 </li>
