@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'password_edits/edit',to:'password_edits#edit'
-  get 'sessions/new'
   root 'static_pages#home'
   get '/home',to:'static_pages#home'
   get '/help',to:'static_pages#help'
@@ -12,7 +10,13 @@ Rails.application.routes.draw do
   get '/login',to:'sessions#new'
   post '/login',to:'sessions#create'
   delete '/logout',to:'sessions#destroy'
-  resources :users
+  get 'password_edits/edit',to:'password_edits#edit'
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :password_edits, only: [:show, :edit, :update]
   resources :microposts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 end

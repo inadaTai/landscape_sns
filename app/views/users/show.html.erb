@@ -7,6 +7,27 @@
         <%= @user.realname %>
         <%= "<@#{@user.name}>" %><br>
       </h1>
+      <% if current_user?(@user) %>
+        <%= link_to "プロフィール編集", edit_user_path %>
+      <% end %>
+    </section>
+    <section class="stats">
+      <%= render 'share/user_status' %>
+      <%= render 'follow_form' if logged_in? %>
+      <% unless @user.web.nil? %>
+        <div class="web">
+        [web情報]<br><%= @user.web %><br>
+        </div>
+      <% else %>
+        [web情報]<br>webサイトは登録されていません<br>
+      <% end %>
+      <% unless @user.introduction.nil? %>
+        <div class="profile">
+        [プロフィール]<br><%= @user.introduction %>
+        </div>
+      <% else %>
+        [プロフィール]<br>プロフィールがまだ記載されていません
+      <% end %>
     </section>
   </aside>
   <div class="col-md-9">

@@ -8,6 +8,7 @@ ja:
         email: メールアドレス
         realname: 名前
         name: ユーザーネーム
+        introduction: 自己紹介
         sex: 性別
         sex_0: 男性
         sex_1: 女性

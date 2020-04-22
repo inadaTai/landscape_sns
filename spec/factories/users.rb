@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :user do
     name { "test" }
     realname { "test" }
-    email { "tanaka@gmail.com" }
+    email { "test@gmail.com" }
     password { "password" }
     password_confirmation { "password" }
   end
@@ -11,6 +11,14 @@ FactoryBot.define do
     name { "yamamoto" }
     realname { "yamamoto" }
     email { "yamamoto@gmail.com" }
+    password { "foobar" }
+    password_confirmation { "foobar" }
+  end
+
+  factory :tanaka, class: User do
+    name { "tanaka" }
+    realname { "tanaka" }
+    email { "tanaka@gmail.com" }
     password { "foobar" }
     password_confirmation { "foobar" }
   end
