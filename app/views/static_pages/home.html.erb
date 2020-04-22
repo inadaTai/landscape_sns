@@ -21,7 +21,8 @@
   <h1>Landscape SNSへようこそ！</h1>
   <h1>こちらのSNSではみんなで背景の共有をしよう！</h1>
   <%= link_to "新規登録はこちら！", signup_path, class: "btn btn-lg btn-success" %><br>
-
+  <p>フェイスブックアカウトをお持ちの方は</p>
+  <%= link_to "Facebookアカウントでログイン！",'/auth/facebook',class: "btn btn-lg btn-primary" %>
 </div>
 <div class="col-md-6">
   <%= link_to image_tag('/ヴェネツィア.jpeg',width: "550px") , about_path%>

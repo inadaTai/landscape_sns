@@ -12,7 +12,11 @@
       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
+          <% unless user.email.nil? %>
             <%= link_to gravatar_for(user, size: 30), user %>
+          <% else %>
+            <%= link_to image_tag("/default.jpg",:size => 30),user %>
+          <% end %>
           <% end %>
         </div>
       <% end %>

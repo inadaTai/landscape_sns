@@ -19,13 +19,14 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'omniauth-facebook'
+gem 'omniauth'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

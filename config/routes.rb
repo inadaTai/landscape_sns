@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/login',to:'sessions#create'
   delete '/logout',to:'sessions#destroy'
   get 'password_edits/edit',to:'password_edits#edit'
+  get 'auth/:provider/callback', to: 'sessions#create'
   resources :users do
     member do
       get :following, :followers

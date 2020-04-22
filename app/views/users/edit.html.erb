@@ -4,9 +4,11 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <div class="password_edits">
-    <%= link_to "パスワード変更フォームはこちら！", "/password_edits/edit" %>
-    </div>
+    <% if current_user.uid.nil? %>
+      <div class="password_edits">
+      <%= link_to "パスワード変更フォームはこちら！", "/password_edits/edit" %>
+      </div>
+    <% end %>
 
     <%= form_for (@user) do |f| %>
     <%= render 'share/error_messages', object: f.object %>

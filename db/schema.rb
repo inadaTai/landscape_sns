@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_050600) do
+ActiveRecord::Schema.define(version: 2020_04_22_095855) do
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2020_04_21_050600) do
     t.string "web"
     t.integer "tel"
     t.text "introduction"
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
