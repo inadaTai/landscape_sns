@@ -14,4 +14,12 @@ class Micropost < ApplicationRecord
       errors.add(:picture, "投稿できる容量は2MBまでです")
     end
   end
+
+  def self.search(search)
+    if search
+      where(['content LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
 end

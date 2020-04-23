@@ -20,6 +20,16 @@
               </li>
             </ul>
           </li>
+          <li class="search-nav">
+            <%= form_tag(yield(:path), method: :get) do %>
+            <div class="input-group">
+              <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "#{yield(:search_name)}" %>
+              <span class="input-group-btn">
+                <%= submit_tag '検索', :name => nil,class: "btn btn-default" %>
+              </span>
+            </div>
+            <% end %>
+          </li>
         <% else %>
           <li><%= link_to "ログイン", login_path %></li>
         <% end %>

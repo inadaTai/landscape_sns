@@ -65,6 +65,14 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
   end
 
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]

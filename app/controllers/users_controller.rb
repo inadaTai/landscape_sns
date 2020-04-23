@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   #users/editより退会ボタンを使用するので今の仕様では使用しない。
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page]).search(params[:search])
   end
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.paginate(page: params[:page]).search(params[:search])
   end
 
   def new
