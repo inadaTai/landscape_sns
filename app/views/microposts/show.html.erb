@@ -1,0 +1,27 @@
+<% provide(:title, '返信') %>
+<div id="micropost-<%= "#{@micropost.id}" %>">
+  <%= link_to gravatar_for(@micropost.user, size: 70), @micropost.user ,:class=>"user-name" %>
+  <span class="user">投稿主：<%= link_to "#{@micropost.user.realname}", @micropost.user  %><%= link_to "<@#{@micropost.user.name}>", @micropost.user  %></span><br>
+  <span class="micropost_content">
+    <%= @micropost.content %><br>
+    <%= image_tag @micropost.picture.url if @micropost.picture?%>
+  </span>
+  <div class="comment-form">
+    <%= form_for([@micropost , @comment]) do |f| %>
+    <%= render 'share/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_area :body, placeholder: "コメント入力フォーム" %>
+    </div>
+    <%= f.submit "コメント投稿", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="comment_index">
+    <h3>コメント広場</h3>
+    <ul class="users">
+      <% @micropost.comments.each do |comment| %>
+      <li><%= link_to gravatar_for(comment.user, size: 50), comment.user %>
+        <%= link_to "#{comment.user.name}" , @user %>: <%= comment.body %><br>
+        <span class= "batu"><%= link_to "コメント削除" , [@micropost,comment] , method: :delete if current_user?(comment.user) %></span></li>
+        <% end %>
+      </div>
+    </div>

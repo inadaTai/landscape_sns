@@ -19,6 +19,12 @@ RSpec.describe "フォローに関するテスト", type: :system do
       click_on 'Landscapeへログイン'
     end
 
+    def valid_follow
+      visit '/users/2'
+      click_on 'フォロー'
+      visit current_path
+    end
+
     describe "ユーザーが他ユーザに対するフォロー確認テスト" do
       before do
         visit login_path
@@ -31,6 +37,11 @@ RSpec.describe "フォローに関するテスト", type: :system do
         click_on 'フォロー'
         visit current_path
         expect(page).to have_button 'フォロー解除'
+      end
+
+      it "フォローしたらカウントが増えるか確認のテスト" do
+        log_in_as(other_user)
+        expect{ valid_follow }.to change(user.following,:count).by(1)
       end
 
       it "ユーザーが他人ユーザーをフォロー解除ができるかテスト" do

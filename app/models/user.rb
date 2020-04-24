@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates :web, length: { maximum: 400 }
   attr_accessor :remember_token
   attr_accessor :current_password
+  has_many :comments,dependent: :destroy
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",

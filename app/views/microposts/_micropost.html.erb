@@ -17,7 +17,7 @@
     <%= link_to "削除", micropost, method: :delete,
     data: { confirm: "投稿を削除しますか?" } %>
     <% end %>
-    <br><%= link_to "この投稿に返信をする","#" %>
+    <br><%= link_to "この投稿に返信をする",micropost_path(micropost.id) %>
   </span>
   <!-- ボタン・リンククリック後に表示される画面の内容 -->
   <div class="modal" id="testModal-<%= micropost.id %>"  role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -34,11 +34,20 @@
             <%= micropost.content %><br>
             <%= image_tag micropost.picture.url if micropost.picture? %>
           </span>
+          <div class="comment_index">
+            <h3>コメント広場</h3>
+            <ul class="users">
+              <% micropost.comments.each do |comment| %>
+              <li><%= link_to gravatar_for(comment.user, size: 50), comment.user %>
+                <%= link_to "#{comment.user.name}" , @user %>: <%= comment.body %><br>
+                <span class= "batu"><%= link_to "コメント削除" , [micropost,comment] , method: :delete if current_user?(comment.user) %></span></li>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+          </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-      </div>
-    </div>
-  </div>
-</li>
+    </li>
