@@ -32,6 +32,7 @@
           <span><%= link_to "<@#{micropost.user.name}>", micropost.user  %></span><br>
           <span class="micropost_content">
             <%= micropost.content %><br>
+            <%= render "likes/like",micropost: micropost %><br>
             <%= image_tag micropost.picture.url if micropost.picture? %>
           </span>
           <div class="comment_index">

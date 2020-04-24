@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   end
   resources :password_edits, only: [:show, :edit, :update]
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 end

@@ -21,6 +21,10 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'omniauth-facebook'
 gem 'omniauth'
+gem 'counter_culture', '~> 1.8'
+gem 'coffee-rails'
+gem 'uglifier', '4.2.0'
+gem 'sassc',  '~> 2.0.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 # Use Redis adapter to run Action Cable in production
