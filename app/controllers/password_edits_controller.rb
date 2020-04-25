@@ -12,7 +12,7 @@ class PasswordEditsController < ApplicationController
   def update
     @user = current_user
     if @user&.authenticate(params[:user][:current_password])
-      if @user.update_attributes(password_params)
+      if @user.update(password_params)
         flash[:success] = "パスワードを更新しました"
         redirect_to @user
       else

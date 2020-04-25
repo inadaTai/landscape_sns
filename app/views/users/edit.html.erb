@@ -53,6 +53,7 @@
     <% else %>
     <br>[アイコン変更]まだemailアドレスが設定されていません。<br>
     <% end %>
+    <!-- 退会時の最終確認の文書でインデントを揃えると見栄えが悪くなるので、わざと崩しています -->
     <br><button type="button" class="btn btn-warning btn-delete">
       <%= link_to "Landscapeを退会", @user,method: :delete,
       data:{ confirm: "退会の手続きをされますと全てのサービスが利用不可となります、再度ご利用いただくにはID登録が必要となります。

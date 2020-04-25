@@ -23,6 +23,8 @@ class User < ApplicationRecord
                                   dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -82,5 +84,21 @@ class User < ApplicationRecord
     self.find_or_create_by(provider: provider, uid: uid) do |user|
     user.name = name
     end
+  end
+
+  def create_notification_by(current_user)
+    notification=current_user.active_notifications.new(
+      visited_id:self.id,
+      action:"follow"
+    )
+    notification.save if notification.valid?
+  end
+
+  def delete_notification_by(current_user)
+    notification=current_user.active_notifications.find_by(
+      visited_id:self.id,
+      action:"follow"
+    )
+    notification.destroy if !notification.nil?
   end
 end

@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  include NotificationsHelper
+  @@action_name="comment"
 
   def index
   end
@@ -8,6 +10,7 @@ class CommentsController < ApplicationController
     @comment = @micropost.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
+      @comment.create_notification_by(current_user)
       redirect_to micropost_path(@micropost)
     else
       flash[:danger] = "空欄または140文字を超えると無効な投稿です。"
@@ -18,6 +21,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @comment.destroy
+    @comment.delete_notification_by(current_user)
     redirect_to  request.referrer || root_url
   end
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "投稿に関するテスト", type: :system do
 
-  let(:user) { create(:user) }
+  let(:user) { FactoryBot.create(:user) }
   let(:micropost) { user.microposts.build(content:"キレイな写真",picture: File.open("#{Rails.root}/db/images_seeds/1.jpeg"), user_id: user.id) }
 
   def submit_valid_micropost
@@ -17,27 +17,19 @@ RSpec.describe "投稿に関するテスト", type: :system do
     click_button '投稿する'
   end
 
-  def submit_valid_login(remember_me = 0)
-    fill_in 'メールアドレス', with: user.email
-    fill_in 'パスワード', with: 'password'
-    check 'session_remember_me' if remember_me == 1
-    click_on 'Landscapeへログイン'
-  end
-
   context "有効な投稿一覧" do
-    it "有効な投稿をした場合成功したメッセージが出ているかテスト" do
-      visit login_path
-      submit_valid_login
+    before do
+      login_system(user)
       visit root_path
+    end
+
+    it "有効な投稿をした場合成功したメッセージが出ているかテスト" do
       submit_valid_micropost
       expect(current_path).to eq root_path
       expect(page).to have_selector '.alert-success'
     end
 
     it "有効な投稿してその後投稿物を削除し成功のメッセージまで出るかテスト" do
-      visit login_path
-      submit_valid_login
-      visit root_path
       submit_valid_micropost
       expect(current_path).to eq root_path
       expect(page).to have_selector '.alert-success'
@@ -50,8 +42,7 @@ RSpec.describe "投稿に関するテスト", type: :system do
 
   context "無効な投稿一覧" do
     it "無効な投稿をした場合エラーメッセージが出ているかテスト" do
-      visit login_path
-      submit_valid_login
+      login_system(user)
       visit root_path
       submit_invalid_micropost
       expect(current_path).to eq '/microposts'

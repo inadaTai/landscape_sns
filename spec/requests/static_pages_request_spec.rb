@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Staticpages", type: :request do
+RSpec.describe "root_pathのアクセスに関するテスト", type: :request do
 
   describe "GET /home" do
     it "ルートへアクセス可能テスト" do

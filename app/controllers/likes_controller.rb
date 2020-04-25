@@ -5,6 +5,7 @@ class LikesController < ApplicationController
     @micropost = Micropost.find(params[:micropost_id])
     unless @micropost.iine?(current_user)
       @micropost.iine(current_user)
+      @micropost.create_notification_by(current_user)
       @micropost.reload
       respond_to do |format|
         format.html { redirect_to request.referrer || root_url }
@@ -17,6 +18,7 @@ class LikesController < ApplicationController
     @micropost = Like.find(params[:id]).micropost
     if @micropost.iine?(current_user)
       @micropost.uniine(current_user)
+      @micropost.delete_notification_by(current_user)
       @micropost.reload
       respond_to do |format|
         format.html { redirect_to request.referrer || root_url }

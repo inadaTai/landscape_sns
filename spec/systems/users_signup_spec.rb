@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ユーザのログインに関するテスト", type: :system do
+RSpec.describe "ユーザの新規登録に関するテスト", type: :system do
 
   def submit_invalid
     fill_in '名前(サイト内で公開されるお名前です) (例：山田太郎)', with: ''

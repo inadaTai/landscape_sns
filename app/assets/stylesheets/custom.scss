@@ -56,6 +56,11 @@ p{
   padding-top: 8px;
 }
 
+li.notification{
+  display: inline-flex;
+  color: red;
+}
+
 /*フッター*/
 footer {
   margin-top: 45px;

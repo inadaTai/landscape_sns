@@ -15,4 +15,12 @@ module ApplicationHelpers
     }
     follow_redirect!
   end
+  #system_specにて使用するログインのために使うメソッド
+  def login_system(user,remember_me = 0)
+    visit login_path
+    fill_in 'メールアドレス', with: user.email
+    fill_in 'パスワード', with: user.password
+    check 'session_remember_me' if remember_me == 1
+    click_on 'Landscapeへログイン'
+  end
 end

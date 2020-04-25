@@ -5,17 +5,16 @@
     <!-- モーダルを開くボタン・リンク -->
     <button type="button" class="btn btn-default mb-12" data-toggle="modal" data-target="#testModal-<%= micropost.id %>"style="width:215px"style="height:205px">
       <% if micropost.picture? %>
-      <%=  image_tag micropost.picture.url,:size =>'190x190' %>
+        <%=  image_tag micropost.picture.url,:size =>'190x190' %>
       <% else %>
-      コメント広場を表示する
+        コメント広場を表示する
       <% end %>
     </button>
   </span>
   <span class="timestamp">
     投稿時間:<%= time_ago_in_words(micropost.created_at) %>
     <% if current_user?(micropost.user) %>
-    <%= link_to "削除", micropost, method: :delete,
-    data: { confirm: "投稿を削除しますか?" } %>
+      <%= link_to "削除", micropost, method: :delete,data: { confirm: "投稿を削除しますか?" } %>
     <% end %>
     <br><%= link_to "この投稿に返信をする",micropost_path(micropost.id) %>
   </span>

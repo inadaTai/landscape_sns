@@ -3,6 +3,7 @@ class Micropost < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :iine_users, through: :likes, source: :user
+  has_many :notifications,dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   belongs_to :contributer, class_name:'User', foreign_key: 'user_id'
@@ -21,6 +22,24 @@ class Micropost < ApplicationRecord
 
   def iine?(user)
     iine_users.include?(user)
+  end
+
+  def create_notification_by(current_user)
+    @notification=current_user.active_notifications.new(
+      micropost_id:self.id,
+      visited_id:self.contributer.id,
+      action:"like"
+    )
+    @notification.save if @notification.valid?
+  end
+
+  def delete_notification_by(current_user)
+    @notification=current_user.active_notifications.find_by(
+      micropost_id:self.id,
+      visited_id:self.contributer.id,
+      action:"like"
+    )
+    @notification.destroy if !@notification.nil?
   end
 
   private
