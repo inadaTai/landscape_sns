@@ -1,5 +1,5 @@
 <li class="col-md-4" id="micropost-<%= micropost.id %>">
-  <%= unless user.email.nil? %>
+  <% unless micropost.user.email.nil? %>
     <%= link_to gravatar_for(micropost.user, size: 40), micropost.user %>
   <% else %>
     <%= link_to image_tag("/default.jpg",:size => 40),micropost.user %>
