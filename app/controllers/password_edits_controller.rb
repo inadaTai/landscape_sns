@@ -12,11 +12,11 @@ class PasswordEditsController < ApplicationController
   def update
     @user = current_user
     if @user&.authenticate(params[:user][:current_password])
-      if @user.update(password_params)
+      if @user.update(password_params) && !@user.password.nil?
         flash[:success] = "パスワードを更新しました"
         redirect_to @user
       else
-        flash[:danger] = "無効な送信を受け取りました"
+        flash.now[:danger] = "無効な送信を受け取りました"
         render 'edit'
       end
     else
@@ -28,6 +28,6 @@ class PasswordEditsController < ApplicationController
   private
 
   def password_params
-    params.require(:user).permit(:password, :password_confirmation,:current_password)
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 end
