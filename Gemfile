@@ -25,6 +25,7 @@ gem 'counter_culture', '~> 1.8'
 gem 'coffee-rails'
 gem 'uglifier', '4.2.0'
 gem 'sassc',  '~> 2.0.0'
+gem 'mysql2', '>= 0.4.4'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 # Use Redis adapter to run Action Cable in production
@@ -38,8 +39,10 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4'
   gem 'rspec-rails'
   gem "factory_bot_rails"
-  gem 'capybara', '>= 2.15'
-  gem 'webdrivers'
+  #docker導入時Mysqlの仕様にてauto_incrementでsystem_specのuserのidが増え続けるのでテストが通らないため入れます。
+  gem 'database_cleaner'
+  #docker導入よりでwebdriversを削除４月27日
+  #gem 'webdrivers'
   gem 'pry-rails'
 end
 
@@ -54,8 +57,9 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'selenium-webdriver'
+  gem 'capybara', '>= 2.15'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'selenium-webdriver'
 end
 
 group :production do

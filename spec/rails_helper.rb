@@ -30,8 +30,18 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
-require 'capybara/rspec'
 RSpec.configure do |config|
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -57,7 +67,7 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-
+  require 'capybara/rspec'
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
@@ -66,9 +76,15 @@ RSpec.configure do |config|
   config.include ApplicationHelpers
   #設定の追加４月１8日(ファクトリーボットの設定とアプリケーションヘルパーを呼び出せるよう設定)
   config.include FactoryBot::Syntax::Methods
-  config.before(:each) do |example|
-  if example.metadata[:type] == :system
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  RSpec.configure do |config|
+    config.before(:each, type: :system) do
+      driven_by :selenium, using: :headless_chrome, options: {
+        browser: :remote,
+        url: ENV.fetch("SELENIUM_DRIVER_URL"),
+        desired_capabilities: :chrome
+      }
+      Capybara.server_host = 'web'
+      Capybara.app_host='http://web'
+    end
   end
- end
 end

@@ -22,7 +22,8 @@ RSpec.describe "ユーザー新規登録に関するテスト", type: :request d
         name: "tanaka",
         email: "user@gmail.com",
         password: "foobar",
-        password_confirmation: "foobar"
+        password_confirmation: "foobar",
+        id: "1"
         }
       }
   end
